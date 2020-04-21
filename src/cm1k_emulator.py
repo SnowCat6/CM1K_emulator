@@ -563,7 +563,7 @@ class CM1KEmulator:
 		self.set_register_bit('NSR', 4)
 
 	def read_nsr_mode_non_ui(self):
-		return self.get_register_bits('NSR', 4)
+		return CM1KMode(self.get_register_bits('NSR', 4))
 
 	def read_nsr_mode(self):
 		mode = self.read_nsr_mode_non_ui()
