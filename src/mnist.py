@@ -65,12 +65,12 @@ def read_mnist(data_dir, train_test, num_images_to_retrieve=None, first_image_to
 			num_cols = struct.unpack(">L", int_bytes)[0]
 
 			if verbose >= 1:
-				print "Magic number ", magic_num
-				print "Num images: ", num_images
-				print "Magic number ", magic_num
-				print "Num images: ", num_images
-				print "Num rows: ", num_rows
-				print "Num cols: ", num_cols
+				print("Magic number ", magic_num)
+				print("Num images: ", num_images)
+				print("Magic number ", magic_num)
+				print("Num images: ", num_images)
+				print("Num rows: ", num_rows)
+				print("Num cols: ", num_cols)
 
 			num_pixels = num_rows * num_cols
 
@@ -84,14 +84,14 @@ def read_mnist(data_dir, train_test, num_images_to_retrieve=None, first_image_to
 				num_images_to_retrieve = num_images
 
 			# Iterate over the images
-			for imgidx in xrange(0, num_images_to_retrieve):
+			for imgidx in range(0, num_images_to_retrieve):
 				# print
 
 				# Read the image's label
 				byte = lbls_fin.read(1)
 				label = ord(byte)
 				if verbose >= 1:
-					print "Label: ", label
+					print("Label: ", label)
 
 				# Read the image's pixels, convert to array, convert to ints
 				pixels = imgs_fin.read(num_pixels)
@@ -101,7 +101,7 @@ def read_mnist(data_dir, train_test, num_images_to_retrieve=None, first_image_to
 				if invert_images:
 					# Invert the pixel values so background is high (white) and foreground ("ink") is low (black)
 					pixels_arr_int_inv = []
-					for i in xrange(0, num_pixels):
+					for i in range(0, num_pixels):
 						px = pixels_arr_int[i]
 						pixels_arr_int_inv.append(255 - px)
 				else:
@@ -109,7 +109,7 @@ def read_mnist(data_dir, train_test, num_images_to_retrieve=None, first_image_to
 
 				if print_images:
 					print_ascii_image(pixels_arr_int_inv, num_cols)
-					print
+					print()
 
 					# # Write the original image to a PGM file
 					# # Convert from a number array to a byte string
@@ -139,7 +139,7 @@ def read_mnist(data_dir, train_test, num_images_to_retrieve=None, first_image_to
 							pixels_arr_int_inv, num_cols, num_rows, threshold)
 						num_cols_crp = num_rows_crp
 						if print_images:
-							print "Cropped image to {}".format(num_rows_crp)
+							print("Cropped image to {}".format(num_rows_crp))
 							print_ascii_image(pixels_arr_int_inv_cropORctr, num_rows_crp)
 					else:
 						pixels_arr_int_inv_cropORctr = pixels_arr_int_inv
@@ -154,7 +154,7 @@ def read_mnist(data_dir, train_test, num_images_to_retrieve=None, first_image_to
 							pixels_arr_int_inv, num_cols, num_rows, threshold)
 						if hor_shift or ver_shift:
 							if print_images:
-								print "Shifted image by {}, {}".format(hor_shift, ver_shift)
+								print("Shifted image by {}, {}".format(hor_shift, ver_shift))
 								print_ascii_image(pixels_arr_int_inv_cropORctr, num_cols)
 						num_rows_crp = num_rows
 						num_cols_crp = num_rows_crp
@@ -180,7 +180,7 @@ def read_mnist(data_dir, train_test, num_images_to_retrieve=None, first_image_to
 
 				# Convert from a number array to a byte string
 				pixels_arr_int_inv_cropORctr_rsz_chr = ""
-				for i in xrange(0, num_pixels_rsz):
+				for i in range(0, num_pixels_rsz):
 					px = pixels_arr_int_inv_cropORctr_rsz[i]
 					pixels_arr_int_inv_cropORctr_rsz_chr += chr(px)
 

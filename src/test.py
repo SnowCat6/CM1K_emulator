@@ -32,7 +32,7 @@ def run_unit_test_01(verbose=0):
 	Test a basic single CM1K chip network with a single context.
 	"""
 	if verbose >= 1:
-		print "\n\n\n\n\ntest_minimal_01"
+		print ("\n\n\n\n\ntest_minimal_01")
 
 	network = cm1k.CM1KEmulator(network_size=4)
 	assert(not network.euclidean_norm)
@@ -69,23 +69,23 @@ def run_unit_test_01(verbose=0):
 	# Train network
 	for input_, cxt, cat in train:
 		if verbose >= 1 and log.logging_enabled:
-			print "================================================================================"
+			print ("================================================================================")
 		input_comps = [int(x) for x in input_]
 		network.learn(input_comps, cat, cxt)
 	assert(network.read_ncount() == 3)
 
 	# Test network
 	if verbose >= 1:
-		print "################################################################################"
+		print ("################################################################################")
 	for test_input_, test_cxt, test_cats in test:
 		if verbose >= 1:
-			print "================================================================================"
-			print "Test: {} {} {}".format(test_cxt, test_cats, test_input_)
+			print ("================================================================================")
+			print(("Test: {} {} {}".format(test_cxt, test_cats, test_input_)))
 		input_comps = [int(x) for x in test_input_]
 		id_, unc, firing_neurons = network.broadcast(input_comps, test_cxt)
 		best_neuron = firing_neurons[-1] if firing_neurons else None
 		if verbose >= 1:
-			print "id{} unc{} best_neuron: {}".format(id_, unc, best_neuron if best_neuron else None)
+			print(("id{} unc{} best_neuron: {}".format(id_, unc, best_neuron if best_neuron else None)))
 		cats = []
 		dist = network.read_dist()
 		while dist != 0xFFFF:
@@ -93,17 +93,17 @@ def run_unit_test_01(verbose=0):
 			cats.append(cat)
 			nid = network.read_nid()
 			if verbose >= 1:
-				print "Next fire: nid{} dst{} cat{}".format(nid, dist, cat)
+				print(("Next fire: nid{} dst{} cat{}".format(nid, dist, cat)))
 			dist = network.read_dist()
 		if verbose >= 1:
-			print "Testing: num categories: {} = {} ?".format(len(cats), len(test_cats))
+			print(("Testing: num categories: {} = {} ?".format(len(cats), len(test_cats))))
 		assert(len(cats) == len(test_cats))
 		for i, cat in enumerate(cats):
 			if verbose >= 1:
-				print "Testing: category: {} = {} ?".format(cat, test_cats[i])
+				print(("Testing: category: {} = {} ?".format(cat, test_cats[i])))
 			assert(cat == test_cats[i])
 
-	print "run_unit_test_01: PASS"
+	print ("run_unit_test_01: PASS")
 
 
 def run_unit_test_02(verbose=0):
@@ -112,7 +112,7 @@ def run_unit_test_02(verbose=0):
 	It should add new neurons indefinitely as needed.
 	"""
 	if verbose >= 1:
-		print "\n\n\n\n\ntest_minimal_02"
+		print ("\n\n\n\n\ntest_minimal_02")
 
 	network = cm1k.CM1KEmulator(network_size=0)
 	assert(not network.euclidean_norm)
@@ -149,23 +149,23 @@ def run_unit_test_02(verbose=0):
 	# Train network
 	for input_, cxt, cat in train:
 		if verbose >= 1 and log.logging_enabled:
-			print "================================================================================"
+			print ("================================================================================")
 		input_comps = [int(x) for x in input_]
 		network.learn(input_comps, cat, cxt)
 	assert(network.read_ncount() == 3)
 
 	# Test network
 	if verbose >= 1:
-		print "################################################################################"
+		print ("################################################################################")
 	for test_input_, test_cxt, test_cats in test:
 		if verbose >= 1:
-			print "================================================================================"
-			print "Test: {} {} {}".format(test_cxt, test_cats, test_input_)
+			print ("================================================================================")
+			print(("Test: {} {} {}".format(test_cxt, test_cats, test_input_)))
 		input_comps = [int(x) for x in test_input_]
 		id_, unc, firing_neurons = network.broadcast(input_comps, test_cxt)
 		best_neuron = firing_neurons[-1] if firing_neurons else None
 		if verbose >= 1:
-			print "id{} unc{} best_neuron: {}".format(id_, unc, best_neuron if best_neuron else None)
+			print(("id{} unc{} best_neuron: {}".format(id_, unc, best_neuron if best_neuron else None)))
 		cats = []
 		dist = network.read_dist()
 		while dist != 0xFFFF:
@@ -173,17 +173,17 @@ def run_unit_test_02(verbose=0):
 			cats.append(cat)
 			nid = network.read_nid()
 			if verbose >= 1:
-				print "Next fire: nid{} dst{} cat{}".format(nid, dist, cat)
+				print(("Next fire: nid{} dst{} cat{}".format(nid, dist, cat)))
 			dist = network.read_dist()
 		if verbose >= 1:
-			print "Testing: num categories: {} = {} ?".format(len(cats), len(test_cats))
+			print(("Testing: num categories: {} = {} ?".format(len(cats), len(test_cats))))
 		assert(len(cats) == len(test_cats))
 		for i, cat in enumerate(cats):
 			if verbose >= 1:
-				print "Testing: category: {} = {} ?".format(cat, test_cats[i])
+				print(("Testing: category: {} = {} ?".format(cat, test_cats[i])))
 			assert(cat == test_cats[i])
 
-	print "run_unit_test_02: PASS"
+	print ("run_unit_test_02: PASS")
 
 
 def run_unit_test_03(verbose=0):
@@ -191,7 +191,7 @@ def run_unit_test_03(verbose=0):
 	Test a network with multiple contexts.
 	"""
 	if verbose >= 1:
-		print "\n\n\n\n\ntest_minimal_03"
+		print ("\n\n\n\n\ntest_minimal_03")
 
 	network = cm1k.CM1KEmulator(network_size=-1)
 	assert(not network.euclidean_norm)
@@ -248,23 +248,23 @@ def run_unit_test_03(verbose=0):
 	# Train network
 	for input_, cxt, cat in train:
 		if verbose >= 1 and log.logging_enabled:
-			print "================================================================================"
+			print("================================================================================")
 		input_comps = [int(x) for x in input_]
 		network.learn(input_comps, cat, cxt)
 	assert(network.read_ncount() == 6)
 
 	# Test network
 	if verbose >= 1:
-		print "################################################################################"
+		print("################################################################################")
 	for test_input_, test_cxt, test_cats in test:
 		if verbose >= 1:
-			print "================================================================================"
-			print "Test: {} {} {}".format(test_cxt, test_cats, test_input_)
+			print("================================================================================")
+			print("Test: {} {} {}".format(test_cxt, test_cats, test_input_))
 		input_comps = [int(x) for x in test_input_]
 		id_, unc, firing_neurons = network.broadcast(input_comps, test_cxt)
 		best_neuron = firing_neurons[-1] if firing_neurons else None
 		if verbose >= 1:
-			print "id{} unc{} best_neuron: {}".format(id_, unc, best_neuron if best_neuron else None)
+			print("id{} unc{} best_neuron: {}".format(id_, unc, best_neuron if best_neuron else None))
 		cats = []
 		dist = network.read_dist()
 		while dist != 0xFFFF:
@@ -272,17 +272,17 @@ def run_unit_test_03(verbose=0):
 			cats.append(cat)
 			nid = network.read_nid()
 			if verbose >= 1:
-				print "Next fire: nid{} dst{} cat{}".format(nid, dist, cat)
+				print("Next fire: nid{} dst{} cat{}".format(nid, dist, cat))
 			dist = network.read_dist()
 		if verbose >= 1:
-			print "Testing: num categories: {} = {} ?".format(len(cats), len(test_cats))
+			print("Testing: num categories: {} = {} ?".format(len(cats), len(test_cats)))
 		assert(len(cats) == len(test_cats))
 		for i, cat in enumerate(cats):
 			if verbose >= 1:
-				print "Testing: category: {} = {} ?".format(cat, test_cats[i])
+				print("Testing: category: {} = {} ?".format(cat, test_cats[i]))
 			assert(cat == test_cats[i])
 
-	print "run_unit_test_03: PASS"
+	print("run_unit_test_03: PASS")
 
 
 def run_unit_test_mnist_01(verbose=0):
@@ -290,7 +290,7 @@ def run_unit_test_mnist_01(verbose=0):
 	Run a few basic tests against a tiny subset of MNIST images
 	"""
 	if verbose >= 1:
-		print "\n\n\n\n\nrun_unit_test_mnist_01"
+		print("\n\n\n\n\nrun_unit_test_mnist_01")
 
 	network = cm1k.CM1KEmulator(network_size=0)
 	assert(not network.euclidean_norm)
@@ -316,8 +316,8 @@ def run_unit_test_mnist_01(verbose=0):
 		resampled_width=16, print_images=True if verbose >= 2 else False, write_transformed_image_files=False)
 
 	if verbose >= 1:
-		print "TRAIN LABELS: {}".format(' '.join([str(x[1]) for x in train_set]))
-		print "TEST LABELS:  {}".format(' '.join([str(x[1]) for x in test_set]))
+		print("TRAIN LABELS: {}".format(' '.join([str(x[1]) for x in train_set])))
+		print("TEST LABELS:  {}".format(' '.join([str(x[1]) for x in test_set])))
 
 	# Train the network
 	cat_counts_sorted_by_val = train_mnist_or_att_faces(0, train_set, network, 0)
@@ -334,13 +334,13 @@ def run_unit_test_mnist_01(verbose=0):
 					   '0', '2', '0', '2', '2', '0', '0', '0', '3', '0', '2', '0', '2', '0', '0', '0']
 
 	if verbose >= 1:
-		print "Testing: results = correct results ?"
-		print "Correct results: ", correct_results
-		print "Actual results:  ", row
+		print("Testing: results = correct results ?")
+		print("Correct results: ", correct_results)
+		print("Actual results:  ", row)
 
 	assert row == correct_results
 
-	print "run_unit_test_mnist_01: PASS"
+	print("run_unit_test_mnist_01: PASS")
 
 
 def train_mnist_or_att_faces(train_set_offset, train_set, network, cxt, verbose=0):
@@ -351,10 +351,10 @@ def train_mnist_or_att_faces(train_set_offset, train_set, network, cxt, verbose=
 	separate CM1K context assigned to each tile. The multi-tile classifications must then be aggregated (voted) somehow.
 	"""
 	if verbose >= 1:
-		print "################################################################################"
-		print "TRAIN with {} images".format(len(train_set))
-		print "{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>10}\t{:>10}\t{:>10}".format(
-			"Idx", "Comm", "Degen", "AIFmn", "AIFmx", "AIFmean", "AIFstdv", "AIFmedian")
+		print("################################################################################")
+		print("TRAIN with {} images".format(len(train_set)))
+		print("{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>10}\t{:>10}\t{:>10}".format(
+			"Idx", "Comm", "Degen", "AIFmn", "AIFmx", "AIFmean", "AIFstdv", "AIFmedian"))
 	for i, (img, lbl) in enumerate(train_set):
 		if verbose >= 1:
 			# As training instances are incrementally presented, occasionally dump some ongoing metrics
@@ -374,8 +374,8 @@ def train_mnist_or_att_faces(train_set_offset, train_set, network, cxt, verbose=
 				aif_stddev = np.std(aifs)
 				aif_median = np.median(aifs)
 
-				print "{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>10.1f}\t{:>10.1f}\t{:>10.1f}".format(
-					train_set_offset + i, num_committed_neurons, num_degenerate, aif_min, aif_max, aif_mean, aif_stddev, aif_median)
+				print("{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>10.1f}\t{:>10.1f}\t{:>10.1f}".format(
+					train_set_offset + i, num_committed_neurons, num_degenerate, aif_min, aif_max, aif_mean, aif_stddev, aif_median))
 
 		# print img
 		# print lbl
@@ -406,28 +406,28 @@ def train_mnist_or_att_faces(train_set_offset, train_set, network, cxt, verbose=
 	cat_counts_sorted_by_val = sorted(cat_counts_sorted, key=lambda x: x[0])
 
 	if verbose >= 1:
-		print "{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>10.1f}\t{:>10.1f}\t{:>10.1f}".format(
-			train_set_offset + len(train_set), num_committed_neurons, num_degenerate, aif_min, aif_max, aif_mean, aif_stddev, aif_median)
+		print("{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>10.1f}\t{:>10.1f}\t{:>10.1f}".format(
+			train_set_offset + len(train_set), num_committed_neurons, num_degenerate, aif_min, aif_max, aif_mean, aif_stddev, aif_median))
 
 	if verbose >= 1:
 		# If the number of committed neurons is small, dump them all
 		if len(aifs) < 1000:
-			print "{} AIFS:".format(len(aifs))
-			print ' '.join([str(x) for x in sorted(aifs)])
+			print("{} AIFS:".format(len(aifs)))
+			print(' '.join([str(x) for x in sorted(aifs)]))
 		else:
-			print "Didn't print full AIF list because there are {}".format(len(aifs))
+			print("Didn't print full AIF list because there are {}".format(len(aifs)))
 
 		# Dump the AIF histogram
-		print "AIF histogram:"
-		print list(aifs_hist[0])
-		print list(aifs_hist[1])
+		print("AIF histogram:")
+		print(list(aifs_hist[0]))
+		print(list(aifs_hist[1]))
 
 		# Dump the distribution of the number of committed neurons per category, both in raw counts and proportionally
-		print "Committed neuron distribution:"
+		print("Committed neuron distribution:")
 		for cat_count in cat_counts_sorted_by_val:
-			print "{:>2}\t{:>5}".format(cat_count[0], cat_count[1])
+			print("{:>2}\t{:>5}".format(cat_count[0], cat_count[1]))
 		for cat_count in cat_counts_sorted_by_val:
-			print "{:>2}\t{:>5}".format(cat_count[0], float(cat_count[1]) / num_committed_neurons)
+			print("{:>2}\t{:>5}".format(cat_count[0], float(cat_count[1]) / num_committed_neurons))
 
 	return cat_counts_sorted_by_val
 
@@ -451,65 +451,65 @@ def test_mnist_or_att_faces_out(
 	"""
 	if verbose >= 1:
 		# Dump all the results to the screen, with labels, for maximum legibility
-		print "################################################################################"
+		print("################################################################################")
 
-		print "Results:"
-		print "Invert:                {}".format("Y" if invert_images else "N")
-		print "Crop:                  {}".format(crop_images_exclusion)
-		print "Center:                {}".format(center_images_exclusion)
-		print "Resampled width:       {}".format(resampled_width)
-		print "Randomize:             {}".format("Y" if randomize_train_set else "N")
-		print "Random seed:           {}".format(rseed)
-		print "Train set size:        {}".format(num_training_images)
-		print "Test set size:         {}".format(num_testing_images)
-		print "Num committed:         {}".format(network.read_ncount())
-		print "Committed distribution:"
+		print("Results:")
+		print("Invert:                {}".format("Y" if invert_images else "N"))
+		print("Crop:                  {}".format(crop_images_exclusion))
+		print("Center:                {}".format(center_images_exclusion))
+		print("Resampled width:       {}".format(resampled_width))
+		print("Randomize:             {}".format("Y" if randomize_train_set else "N"))
+		print("Random seed:           {}".format(rseed))
+		print("Train set size:        {}".format(num_training_images))
+		print("Test set size:         {}".format(num_testing_images))
+		print("Num committed:         {}".format(network.read_ncount()))
+		print("Committed distribution:")
 		for k, v in cat_counts_sorted_by_val:
-			print "  {}: {}".format(k, v)
+			print("  {}: {}".format(k, v))
 		for k, v in cat_counts_sorted_by_val:
-			print "  {}: {}".format(k, float(v) / network.read_ncount())
-		print "AIF scale:             {}".format(aif_scale)
-		print "num_id0_unc0:          {}".format(num_id0_unc0)
-		print "num_id1_unc0:          {}".format(num_id1_unc0)
-		print "num_id0_unc1:          {}".format(num_id0_unc1)
-		print "num_id1_unc1:          {}".format(num_id1_unc1)
-		print "matches_per_trans_set: {}".format(matches_per_trans_set)
-		for i in xrange(len(translation_sets)):
-			print "  {}: {}".format(i, matches_per_trans_set[i][1])
-		print "pos_mode_vote_trans0_sum: {}".format(pos_mode_vote_trans0_sum)
-		print "neg_mode_vote_trans0_sum: {}".format(neg_mode_vote_trans0_sum)
-		print "tot_mode_vote_trans0_sum: {}".format(pos_mode_vote_trans0_sum + neg_mode_vote_trans0_sum)
-		print "pos_mode_vote_sum:        {}".format(pos_mode_vote_sum)
-		print "neg_mode_vote_sum:        {}".format(neg_mode_vote_sum)
-		print "tot_mode_vote_sum:        {}".format(pos_mode_vote_sum + neg_mode_vote_sum)
-		print "num correct total:     {}".format(num_correct_id_id + num_correct_id_unc + num_correct_unc_id + num_correct_unc_unc)
-		print "num_correct_id_id:     {}".format(num_correct_id_id)
-		print "num_correct_id_unc:    {}".format(num_correct_id_unc)
-		print "num_correct_unc_id:    {}".format(num_correct_unc_id)
-		print "num_correct_unc_unc:   {}".format(num_correct_unc_unc)
-		print "num_correct_id_id_per_trans_set_idx:   {}".format(num_correct_id_id_per_trans_set_idx)
-		print "num_correct_id_unc_per_trans_set_idx:  {}".format(num_correct_id_unc_per_trans_set_idx)
-		print "num_correct_unc_id_per_trans_set_idx:  {}".format(num_correct_unc_id_per_trans_set_idx)
-		print "num_correct_unc_unc_per_trans_set_idx: {}".format(num_correct_unc_unc_per_trans_set_idx)
-		for i in xrange(len(translation_sets)):
-			print "  {} id_id:   {}".format(i, num_correct_id_id_per_trans_set_idx[i][1])
-			print "  {} id_unc:  {}".format(i, num_correct_id_unc_per_trans_set_idx[i][1])
-			print "  {} unc_id:  {}".format(i, num_correct_unc_id_per_trans_set_idx[i][1])
-			print "  {} unc_unc: {}".format(i, num_correct_unc_unc_per_trans_set_idx[i][1])
-		print "num wrong total:       {}".format(num_wrong_id_id + num_wrong_id_unc + num_wrong_unc_id + num_wrong_unc_unc)
-		print "num_wrong_id_id:       {}".format(num_wrong_id_id)
-		print "num_wrong_id_unc:      {}".format(num_wrong_id_unc)
-		print "num_wrong_unc_id:      {}".format(num_wrong_unc_id)
-		print "num_wrong_unc_unc:     {}".format(num_wrong_unc_unc)
-		print "num_wrong_id_id_per_trans_set_idx:   {}".format(num_wrong_id_id_per_trans_set_idx)
-		print "num_wrong_id_unc_per_trans_set_idx:  {}".format(num_wrong_id_unc_per_trans_set_idx)
-		print "num_wrong_unc_id_per_trans_set_idx:  {}".format(num_wrong_unc_id_per_trans_set_idx)
-		print "num_wrong_unc_unc_per_trans_set_idx: {}".format(num_wrong_unc_unc_per_trans_set_idx)
-		for i in xrange(len(translation_sets)):
-			print "  {} id_id:   {}".format(i, num_wrong_id_id_per_trans_set_idx[i][1])
-			print "  {} id_unc:  {}".format(i, num_wrong_id_unc_per_trans_set_idx[i][1])
-			print "  {} unc_unc: {}".format(i, num_wrong_unc_id_per_trans_set_idx[i][1])
-			print "  {} unc_unc: {}".format(i, num_wrong_unc_unc_per_trans_set_idx[i][1])
+			print("  {}: {}".format(k, float(v) / network.read_ncount()))
+		print("AIF scale:             {}".format(aif_scale))
+		print("num_id0_unc0:          {}".format(num_id0_unc0))
+		print("num_id1_unc0:          {}".format(num_id1_unc0))
+		print("num_id0_unc1:          {}".format(num_id0_unc1))
+		print("num_id1_unc1:          {}".format(num_id1_unc1))
+		print("matches_per_trans_set: {}".format(matches_per_trans_set))
+		for i in range(len(translation_sets)):
+			print("  {}: {}".format(i, matches_per_trans_set[i][1]))
+		print("pos_mode_vote_trans0_sum: {}".format(pos_mode_vote_trans0_sum))
+		print("neg_mode_vote_trans0_sum: {}".format(neg_mode_vote_trans0_sum))
+		print("tot_mode_vote_trans0_sum: {}".format(pos_mode_vote_trans0_sum + neg_mode_vote_trans0_sum))
+		print("pos_mode_vote_sum:        {}".format(pos_mode_vote_sum))
+		print("neg_mode_vote_sum:        {}".format(neg_mode_vote_sum))
+		print("tot_mode_vote_sum:        {}".format(pos_mode_vote_sum + neg_mode_vote_sum))
+		print("num correct total:     {}".format(num_correct_id_id + num_correct_id_unc + num_correct_unc_id + num_correct_unc_unc))
+		print("num_correct_id_id:     {}".format(num_correct_id_id))
+		print("num_correct_id_unc:    {}".format(num_correct_id_unc))
+		print("num_correct_unc_id:    {}".format(num_correct_unc_id))
+		print("num_correct_unc_unc:   {}".format(num_correct_unc_unc))
+		print("num_correct_id_id_per_trans_set_idx:   {}".format(num_correct_id_id_per_trans_set_idx))
+		print("num_correct_id_unc_per_trans_set_idx:  {}".format(num_correct_id_unc_per_trans_set_idx))
+		print("num_correct_unc_id_per_trans_set_idx:  {}".format(num_correct_unc_id_per_trans_set_idx))
+		print("num_correct_unc_unc_per_trans_set_idx: {}".format(num_correct_unc_unc_per_trans_set_idx))
+		for i in range(len(translation_sets)):
+			print("  {} id_id:   {}".format(i, num_correct_id_id_per_trans_set_idx[i][1]))
+			print("  {} id_unc:  {}".format(i, num_correct_id_unc_per_trans_set_idx[i][1]))
+			print("  {} unc_id:  {}".format(i, num_correct_unc_id_per_trans_set_idx[i][1]))
+			print("  {} unc_unc: {}".format(i, num_correct_unc_unc_per_trans_set_idx[i][1]))
+		print("num wrong total:       {}".format(num_wrong_id_id + num_wrong_id_unc + num_wrong_unc_id + num_wrong_unc_unc))
+		print("num_wrong_id_id:       {}".format(num_wrong_id_id))
+		print("num_wrong_id_unc:      {}".format(num_wrong_id_unc))
+		print("num_wrong_unc_id:      {}".format(num_wrong_unc_id))
+		print("num_wrong_unc_unc:     {}".format(num_wrong_unc_unc))
+		print("num_wrong_id_id_per_trans_set_idx:   {}".format(num_wrong_id_id_per_trans_set_idx))
+		print("num_wrong_id_unc_per_trans_set_idx:  {}".format(num_wrong_id_unc_per_trans_set_idx))
+		print("num_wrong_unc_id_per_trans_set_idx:  {}".format(num_wrong_unc_id_per_trans_set_idx))
+		print("num_wrong_unc_unc_per_trans_set_idx: {}".format(num_wrong_unc_unc_per_trans_set_idx))
+		for i in range(len(translation_sets)):
+			print("  {} id_id:   {}".format(i, num_wrong_id_id_per_trans_set_idx[i][1]))
+			print("  {} id_unc:  {}".format(i, num_wrong_id_unc_per_trans_set_idx[i][1]))
+			print("  {} unc_unc: {}".format(i, num_wrong_unc_id_per_trans_set_idx[i][1]))
+			print("  {} unc_unc: {}".format(i, num_wrong_unc_unc_per_trans_set_idx[i][1]))
 
 	# Create a legend that can easily be copy/pasted into a spreadsheet
 	legend = [
@@ -532,7 +532,7 @@ def test_mnist_or_att_faces_out(
 		'NUM ID0 UNC1',
 		'NUM ID1 UNC1',
 	])
-	for i in xrange(len(translation_sets)):
+	for i in range(len(translation_sets)):
 		legend.append('TRANS SET {}'.format(i))
 	legend.extend([
 		'POS MODE VOTE TS0 SUM',
@@ -552,12 +552,12 @@ def test_mnist_or_att_faces_out(
 		'NUM WRONG UNC ID',
 		'NUM WRONG UNC UNC',
 	])
-	for i in xrange(len(translation_sets)):
+	for i in range(len(translation_sets)):
 		legend.append('NUM CORRECT TRANS SET {} ID ID'.format(i))
 		legend.append('NUM CORRECT TRANS SET {} ID UNC'.format(i))
 		legend.append('NUM CORRECT TRANS SET {} UNC ID'.format(i))
 		legend.append('NUM CORRECT TRANS SET {} UNC UNC'.format(i))
-	for i in xrange(len(translation_sets)):
+	for i in range(len(translation_sets)):
 		legend.append('NUM WRONG TRANS SET {} ID ID'.format(i))
 		legend.append('NUM WRONG TRANS SET {} ID UNC'.format(i))
 		legend.append('NUM WRONG TRANS SET {} UNC ID'.format(i))
@@ -584,7 +584,7 @@ def test_mnist_or_att_faces_out(
 	output.append("{}".format(num_id1_unc0))
 	output.append("{}".format(num_id0_unc1))
 	output.append("{}".format(num_id1_unc1))
-	for i in xrange(len(translation_sets)):
+	for i in range(len(translation_sets)):
 		output.append("{}".format(matches_per_trans_set[i][1]))
 	output.append("{}".format(pos_mode_vote_trans0_sum))
 	output.append("{}".format(neg_mode_vote_trans0_sum))
@@ -602,12 +602,12 @@ def test_mnist_or_att_faces_out(
 	output.append("{}".format(num_wrong_id_unc))
 	output.append("{}".format(num_wrong_unc_id))
 	output.append("{}".format(num_wrong_unc_unc))
-	for i in xrange(len(translation_sets)):
+	for i in range(len(translation_sets)):
 		output.append("{}".format(num_correct_id_id_per_trans_set_idx[i][1]))
 		output.append("{}".format(num_correct_id_unc_per_trans_set_idx[i][1]))
 		output.append("{}".format(num_correct_unc_id_per_trans_set_idx[i][1]))
 		output.append("{}".format(num_correct_unc_unc_per_trans_set_idx[i][1]))
-	for i in xrange(len(translation_sets)):
+	for i in range(len(translation_sets)):
 		output.append("{}".format(num_wrong_id_id_per_trans_set_idx[i][1]))
 		output.append("{}".format(num_wrong_id_unc_per_trans_set_idx[i][1]))
 		output.append("{}".format(num_wrong_unc_id_per_trans_set_idx[i][1]))
@@ -616,10 +616,10 @@ def test_mnist_or_att_faces_out(
 	assert len(legend) == len(output)
 
 	if verbose >= 1:
-		print "Legend ({}):".format(len(legend))
-		print '\n'.join(legend)
-		print "Results ({}):".format(len(output))
-		print '\n'.join(output)
+		print("Legend ({}):".format(len(legend)))
+		print('\n'.join(legend))
+		print("Results ({}):".format(len(output)))
+		print('\n'.join(output))
 
 	return legend, output
 
@@ -632,8 +632,8 @@ def test_mnist_or_att_faces(
 	Classify a test dataset with a trained network
 	"""
 	if verbose >= 1:
-		print "################################################################################"
-		print "TEST with {} images".format(num_testing_images)
+		print("################################################################################")
+		print("TEST with {} images".format(num_testing_images))
 	assert(len(test_set) == num_testing_images)
 	bg_color = 255 if invert_images else 0
 
@@ -665,7 +665,7 @@ def test_mnist_or_att_faces(
 	num_wrong_id_unc_per_trans_set_idx = Counter()
 	num_wrong_unc_id_per_trans_set_idx = Counter()
 	num_wrong_unc_unc_per_trans_set_idx = Counter()
-	for i in xrange(len(translation_sets)):
+	for i in range(len(translation_sets)):
 		matches_per_trans_set[i] = 0
 		num_correct_id_id_per_trans_set_idx[i] = 0
 		num_correct_id_unc_per_trans_set_idx[i] = 0
@@ -689,7 +689,7 @@ def test_mnist_or_att_faces(
 		# print "================================================================================"
 		if verbose >= 1:
 			if img_idx % 100 == 0:
-				print "Idx: {}".format(img_idx)
+				print("Idx: {}".format(img_idx))
 			# print img
 			# print lbl
 		input_comps = [ord(x) for x in img]  # Convert input components to ordinal byte values
@@ -815,13 +815,13 @@ def test_mnist_or_att_faces(
 						neg_mode_vote_sum += mode_effect
 						if len(matches) == 1 and matches[0] == (0, 0):
 							neg_mode_vote_trans0_sum += mode_effect
-					print "{:0>5}          lbl:{}    #bcts:{}    #acts:{}    ctm:{:>4}    tsi:{}    sts:{}    mef:{}".format(
-						img_idx, lbl, len(matched_best_cats), len(matched_all_cats), cat_mode, trans_set_idx, status, mode_effect)
+					print("{:0>5}          lbl:{}    #bcts:{}    #acts:{}    ctm:{:>4}    tsi:{}    sts:{}    mef:{}".format(
+						img_idx, lbl, len(matched_best_cats), len(matched_all_cats), cat_mode, trans_set_idx, status, mode_effect))
 					for match in reversed(matches):
 						fn_out = "    ({:>2},{:>2}) =>".format(match[0][0], match[0][1])
 						for cat_dist in reversed(match[1]):
 							fn_out += "    {}".format(cat_dist)
-						print fn_out
+						print(fn_out)
 				break
 			elif len(matched_best_cats) > 1:  # The best results across all translations disagree
 				status = 10  # The id/unc correct/wrong status
@@ -866,13 +866,13 @@ def test_mnist_or_att_faces(
 						neg_mode_vote_sum += mode_effect / 10
 						if len(matches) == 1 and matches[0] == (0, 0):
 							neg_mode_vote_trans0_sum += mode_effect / 10
-					print "{:0>5}          lbl:{}    #bcts:{}    #acts:{}    tsi:{}   sts:{}    mef:{}".format(
-						img_idx, lbl, len(matched_best_cats), len(matched_all_cats), trans_set_idx, status, mode_effect)
+					print("{:0>5}          lbl:{}    #bcts:{}    #acts:{}    tsi:{}   sts:{}    mef:{}".format(
+						img_idx, lbl, len(matched_best_cats), len(matched_all_cats), trans_set_idx, status, mode_effect))
 					for match in reversed(matches):
 						fn_out = "    ({:>2},{:>2}) =>".format(match[0][0], match[0][1])
 						for cat_dist in reversed(match[1]):
 							fn_out += "    {}".format(cat_dist)
-						print fn_out
+						print(fn_out)
 				break
 
 	# print "pos_mv_t0_sum: {}".format(pos_mode_vote_trans0_sum)
@@ -930,8 +930,8 @@ def run_oneconfig_mnist(
 		# for its included L1 dist. norm. is one fourth of the conceivable distance.
 		euclidean_max_aif = euclidean_norm
 		network.write_maxif(euclidean_max_aif)
-	print "Eucliean norm: {}".format(network.euclidean_norm)
-	print "Max AIF:       {}".format(network.read_maxif())
+	print("Eucliean norm: {}".format(network.euclidean_norm))
+	print("Max AIF:       {}".format(network.read_maxif()))
 
 	# I briefly experimented with scaling all AIFs up a little bit after training was complete, in an effort to decrease
 	# unclassifications during the test stage. However, this idea did't work out well. While it had the desired effect,
@@ -956,16 +956,16 @@ def run_oneconfig_mnist(
 		translation_sets = [
 			((0, 0),),
 		]
-	print "Num translation sets: {}".format(len(translation_sets))
+	print("Num translation sets: {}".format(len(translation_sets)))
 
 	# Since the MNIST database is stored with inverted brightness, I experimented with inverting it as a pre-processing
 	# stage. One would expect this to have no mathematical effect, and the experiments confirmed this.  I recommend not
 	# bothering to enable the inversion parameter.
-	print "Invert images:    {}".format(invert_images)
+	print("Invert images:    {}".format(invert_images))
 	# Crop exclusion indicates the pixel value threshold used when determining a cropping-box.
-	print "Crop exclusion:   {}".format(crop_images_exclusion)
+	print("Crop exclusion:   {}".format(crop_images_exclusion))
 	# Center exclusion indicates the pixel value threshold used when determining a centering-box.
-	print "Center exclusion: {}".format(center_images_exclusion)
+	print("Center exclusion: {}".format(center_images_exclusion))
 
 	# Read the test MNSIT dataset (or some subset of it)
 	test_set = mnist.read_mnist(
@@ -984,14 +984,14 @@ def run_oneconfig_mnist(
 		training_batch_size = num_training_images
 		num_training_batches = 1
 
-	print "Training batch size:  {}".format(training_batch_size)
-	print "Num training batches: {}".format(num_training_batches)
+	print("Training batch size:  {}".format(training_batch_size))
+	print("Num training batches: {}".format(num_training_batches))
 
 	legend = None
 	results_table = []
-	for i in xrange(0, num_training_batches):
-		print "\n\n\n"
-		print "Training batch: {}".format(i)
+	for i in range(0, num_training_batches):
+		print("\n\n\n")
+		print("Training batch: {}".format(i))
 
 		# Read the train dataset (or some subset of it)
 		train_set = mnist.read_mnist(
@@ -1057,7 +1057,7 @@ def run_mnist():
 
 	results_table = []
 	for config in configs:
-		print "\n\n\n\n\nCONFIG: {}".format(config)
+		print("\n\n\n\n\nCONFIG: {}".format(config))
 		legend, rows = run_oneconfig_mnist(
 			config[0], config[1], config[2], config[3], config[4], config[5], config[6], config[7], config[8])
 		assert len(legend) == len(rows[0])
@@ -1098,15 +1098,15 @@ def run_oneconfig_att_faces(invert_images, train_set_proportion, randomize_train
 		assert(len(one_face_imgs) == 10)
 		train_set_cutoff = int(round(10 * train_set_proportion))
 		if lbl == 0:
-			print "train_set_cutoff : {}".format(train_set_cutoff)
-		for i in xrange(0, train_set_cutoff):
+			print("train_set_cutoff : {}".format(train_set_cutoff))
+		for i in range(0, train_set_cutoff):
 			train_set.append((one_face_imgs[i], lbl))
-		for i in xrange(train_set_cutoff, 10):
+		for i in range(train_set_cutoff, 10):
 			test_set.append((one_face_imgs[i], lbl))
 
 	assert(len(train_set) == train_set_cutoff * 40)
 	assert(len(test_set) == 400 - train_set_cutoff * 40)
-	print "Size train and test sets: {}, {}".format(len(train_set), len(test_set))
+	print("Size train and test sets: {}, {}".format(len(train_set), len(test_set)))
 
 	train_set_to_use = train_set
 
@@ -1116,9 +1116,9 @@ def run_oneconfig_att_faces(invert_images, train_set_proportion, randomize_train
 		rd.seed(rseed)
 
 		train_set_randomized = []
-		indices = range(0, len(train_set))
+		indices = list(range(0, len(train_set)))
 		rd.shuffle(indices)
-		print "Randomized train set indices: {}".format(indices)
+		print("Randomized train set indices: {}".format(indices))
 
 		for idx in indices:
 			train_set_randomized.append(train_set[idx])
@@ -1148,7 +1148,7 @@ def run_att_faces():
 	# characterize the outer level config's performance.
 	configs = []
 	for train_proportion in [.1, .2, .3, .4, .5, .6, .7, .8, .9]:
-		for rseed in xrange(0, 10):
+		for rseed in range(0, 10):
 			configs.append([
 				False,  # Invert images
 				train_proportion,  # Proportion of dataset used for training, the rest used for testing
@@ -1159,7 +1159,7 @@ def run_att_faces():
 	legend = None
 	results_table = []
 	for config in configs:
-		print "\n\n\n\n\nCONFIG: {}".format(config)
+		print("\n\n\n\n\nCONFIG: {}".format(config))
 		legend, rows = run_oneconfig_att_faces(config[0], config[1], config[2], config[3])
 		assert len(legend) == len(rows[0])
 		assert len(rows) == 1
@@ -1170,11 +1170,11 @@ def run_att_faces():
 	# So, just produce a tilde-delimited data dump instead.  Why not TABs?  B/c some terminals don't insert a tab
 	# character when the space to the next element is 0, which then breaks any copy/paste elsewhere (say a spreadsheet).
 	# Alternatively, we could directly write a CSV file to disk here (via or not via DataFrames).
-	print "################################################################################"
-	print "FINAL RESULTS"
-	print '~'.join(legend)
+	print("################################################################################")
+	print("FINAL RESULTS")
+	print('~'.join(legend))
 	for row in results_table:
-		print '~'.join(row)
+		print('~'.join(row))
 
 	# Here's the DataFrame approach
 	# all_results_df = pd.DataFrame(results_table, rows=legend)
@@ -1184,8 +1184,8 @@ def run_att_faces():
 
 
 def train_iris_or_mushroom(train_set, network, cxt, trace_mod, trace_test):
-	print "################################################################################"
-	print "TRAIN with {} instances".format(len(train_set))
+	print("################################################################################")
+	print("TRAIN with {} instances".format(len(train_set)))
 	all_aifs = []
 	for i, (features, lbl) in enumerate(train_set):
 		# print "================================================================================"
@@ -1211,25 +1211,25 @@ def train_iris_or_mushroom(train_set, network, cxt, trace_mod, trace_test):
 			aif_median = np.median(aifs)
 			aifs_hist = np.histogram(aifs)
 
-			print "AIF summary:"
-			print "{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>10.1f}\t{:>10.1f}\t{:>10.1f}".format(
-				i, num_committed_neurons, num_degenerate, aif_min, aif_max, aif_mean, aif_stddev, aif_median)
+			print("AIF summary:")
+			print("{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>5}\t{:>10.1f}\t{:>10.1f}\t{:>10.1f}".format(
+				i, num_committed_neurons, num_degenerate, aif_min, aif_max, aif_mean, aif_stddev, aif_median))
 
-			print "AIF histogram:"
-			print list(aifs_hist[0])
-			print list(aifs_hist[1])
+			print("AIF histogram:")
+			print(list(aifs_hist[0]))
+			print(list(aifs_hist[1]))
 
-			print "AIFs:"
-			print ' '.join([str(x) for x in sorted(aifs)])
+			print("AIFs:")
+			print(' '.join([str(x) for x in sorted(aifs)]))
 
-			print "AIFs Dict:"
+			print("AIFs Dict:")
 			aifs_dct = Counter()
 			for aif in aifs:
 				aifs_dct[aif] += 1
 			for aif in sorted(aifs_dct.keys()):
-				print "{}\t{}".format(aif, aifs_dct[aif])
+				print("{}\t{}".format(aif, aifs_dct[aif]))
 
-			print "--------------------"
+			print("--------------------")
 
 	# Dump the AIF distribution
 	for aifs_bag in all_aifs:
@@ -1239,7 +1239,7 @@ def train_iris_or_mushroom(train_set, network, cxt, trace_mod, trace_test):
 		row = ""
 		for aif in sorted(aifs_dct.keys()):
 			row += "{}\t{}\t".format(aif, aifs_dct[aif])
-		print row
+		print(row)
 
 
 def test_iris_or_mushroom_out(
@@ -1263,31 +1263,31 @@ def test_iris_or_mushroom_out(
 	# f1_eqtn2 = 2. * ((precision * recall) / (precision + recall))
 
 	# Dump all the results to the screen, with labels, for maximum legibility
-	print "################################################################################"
+	print("################################################################################")
 
-	print "Results:"
-	print "Max AIF:           {:>4}".format(max_aif)
-	print "Train set size:    {:>4}".format(train_set_size)
-	print "Test set size:     {:>4}".format(test_set_size)
-	print "Randomize:         {:>4}".format(1 if randomize_train_set else 0)
-	print "Random seed:       {:>4}".format(rseed)
-	print "Num committed:     {:>4}".format(network_size)
-	print "num_id0_unc0:      {:>4}".format(num_id0_unc0)
-	print "num_id1_unc0:      {:>4}".format(num_id1_unc0)
-	print "num_id0_unc1:      {:>4}".format(num_id0_unc1)
-	print "num_id1_unc1:      {:>4}".format(num_id1_unc1)
-	print "pos_mode_vote_sum: {:>4}".format(pos_mode_vote_sum)
-	print "neg_mode_vote_sum: {:>4}".format(neg_mode_vote_sum)
-	print "tot_mode_vote_sum: {:>4}".format(pos_mode_vote_sum + neg_mode_vote_sum)
-	print "num correct total: {:>4}".format(correct_total)
-	print "num_correct_id:    {:>4}".format(num_correct_id)
-	print "num_correct_unc:   {:>4}".format(num_correct_unc)
-	print "num wrong total:   {:>4}".format(wrong_total)
-	print "num_wrong_id:      {:>4}".format(num_wrong_id)
-	print "num_wrong_unc:     {:>4}".format(num_wrong_unc)
-	print "precision:         {:>4}".format(precision)
-	print "recall:            {:>4}".format(recall)
-	print "F1:                {:>4}".format(f1_eqtn1)
+	print("Results:")
+	print("Max AIF:           {:>4}".format(max_aif))
+	print("Train set size:    {:>4}".format(train_set_size))
+	print("Test set size:     {:>4}".format(test_set_size))
+	print("Randomize:         {:>4}".format(1 if randomize_train_set else 0))
+	print("Random seed:       {:>4}".format(rseed))
+	print("Num committed:     {:>4}".format(network_size))
+	print("num_id0_unc0:      {:>4}".format(num_id0_unc0))
+	print("num_id1_unc0:      {:>4}".format(num_id1_unc0))
+	print("num_id0_unc1:      {:>4}".format(num_id0_unc1))
+	print("num_id1_unc1:      {:>4}".format(num_id1_unc1))
+	print("pos_mode_vote_sum: {:>4}".format(pos_mode_vote_sum))
+	print("neg_mode_vote_sum: {:>4}".format(neg_mode_vote_sum))
+	print("tot_mode_vote_sum: {:>4}".format(pos_mode_vote_sum + neg_mode_vote_sum))
+	print("num correct total: {:>4}".format(correct_total))
+	print("num_correct_id:    {:>4}".format(num_correct_id))
+	print("num_correct_unc:   {:>4}".format(num_correct_unc))
+	print("num wrong total:   {:>4}".format(wrong_total))
+	print("num_wrong_id:      {:>4}".format(num_wrong_id))
+	print("num_wrong_unc:     {:>4}".format(num_wrong_unc))
+	print("precision:         {:>4}".format(precision))
+	print("recall:            {:>4}".format(recall))
+	print("F1:                {:>4}".format(f1_eqtn1))
 	# print "F1:                {:>4}".format(f1_eqtn2)
 
 	# Create a legend that can easily be copy/pasted into a spreadsheet
@@ -1345,10 +1345,10 @@ def test_iris_or_mushroom_out(
 
 	assert len(legend) == len(output)
 
-	print "Legend ({}):".format(len(legend))
-	print '\n'.join(legend)
-	print "Results ({}):".format(len(output))
-	print '\n'.join(output)
+	print("Legend ({}):".format(len(legend)))
+	print('\n'.join(legend))
+	print("Results ({}):".format(len(output)))
+	print('\n'.join(output))
 
 	return legend, output
 
@@ -1357,9 +1357,9 @@ def test_iris_or_mushroom(max_aif, train_set_size, test_set_size, randomize_trai
 	"""
 	Classify a test dataset with a trained network
 	"""
-	print "################################################################################"
+	print("################################################################################")
 	assert(len(test_set) == test_set_size)
-	print "TEST with {} instances".format(test_set_size)
+	print("TEST with {} instances".format(test_set_size))
 	num_id0_unc0 = 0
 	num_id1_unc0 = 0
 	num_id0_unc1 = 0
@@ -1458,12 +1458,12 @@ def test_iris_or_mushroom(max_aif, train_set_size, test_set_size, randomize_trai
 					pos_mode_vote_sum += mode_effect
 				else:
 					neg_mode_vote_sum += mode_effect
-				print "{:0>5}    lbl:{}    #cts:{}    ctm:{:_>4}    sts:{}    mef:{}".format(
-					instance_idx, lbl, len(matched_cats), cat_mode, status, mode_effect)
+				print("{:0>5}    lbl:{}    #cts:{}    ctm:{:_>4}    sts:{}    mef:{}".format(
+					instance_idx, lbl, len(matched_cats), cat_mode, status, mode_effect))
 				fn_out = "    "
 				for cat_dist in reversed(firing_neuron_cat_dists):
 					fn_out += "    {}".format(cat_dist)
-				print fn_out
+				print(fn_out)
 
 		# print "  Status: {}".format(status)
 
@@ -1488,7 +1488,7 @@ def run_oneconfig_iris(max_aif, train_set_proportion, randomize_train_set, rseed
 	"""
 	network = cm1k.CM1KEmulator(network_size=0)
 	network.write_maxif(max_aif)  # Override the default max AIF
-	print "Max AIF: {}".format(network.read_maxif())
+	print("Max AIF: {}".format(network.read_maxif()))
 
 	iris_num_instances_per_cat = 50
 	iris_num_categories = 3
@@ -1501,21 +1501,21 @@ def run_oneconfig_iris(max_aif, train_set_proportion, randomize_train_set, rseed
 
 	# Split into train and test subsets
 	num_train_items_per_cat = int(round(50 * train_set_proportion))
-	print "Size train and set sets per category A: {}, {}".format(
-		num_train_items_per_cat, iris_num_instances_per_cat - num_train_items_per_cat)
+	print("Size train and set sets per category A: {}, {}".format(
+		num_train_items_per_cat, iris_num_instances_per_cat - num_train_items_per_cat))
 	train_set = []
 	test_set = []
 	for cat_idx, cat in enumerate(data_grouped_by_cat):
 		data_one_cat = data_grouped_by_cat[cat]
 
 		# The categories are initially strings. Convert them to ints by taking their index.
-		for i in xrange(0, num_train_items_per_cat):
+		for i in range(0, num_train_items_per_cat):
 			train_set.append((data_one_cat[i], cat_idx))
-		for i in xrange(num_train_items_per_cat, iris_num_instances_per_cat):
+		for i in range(num_train_items_per_cat, iris_num_instances_per_cat):
 			test_set.append((data_one_cat[i], cat_idx))
 	assert(len(train_set) == num_train_items_per_cat * 3)
 	assert(len(test_set) == (iris_num_instances_per_cat * iris_num_categories) - num_train_items_per_cat * 3)
-	print "Size train and set sets per category B: {}, {}".format(len(train_set), len(test_set))
+	print("Size train and set sets per category B: {}, {}".format(len(train_set), len(test_set)))
 
 	train_set_to_use = train_set
 
@@ -1525,9 +1525,9 @@ def run_oneconfig_iris(max_aif, train_set_proportion, randomize_train_set, rseed
 		rd.seed(rseed)
 
 		train_set_randomized = []
-		indices = range(0, len(train_set))
+		indices = list(range(0, len(train_set)))
 		rd.shuffle(indices)
-		print "Randomized train set indices: {}".format(indices)
+		print("Randomized train set indices: {}".format(indices))
 
 		for idx in indices:
 			train_set_randomized.append(train_set[idx])
@@ -1559,7 +1559,7 @@ def run_iris():
 	for max_aif in max_aif_range:
 		for train_proportion in [.1, .2, .3, .4, .5, .6, .7, .8, .9]:
 			config_batch = []
-			for rseed in xrange(0, 10):
+			for rseed in range(0, 10):
 				config_batch.append([max_aif, train_proportion, True, rseed])
 			config_batches.append(config_batch)
 
@@ -1572,23 +1572,23 @@ def run_iris():
 		# Iterate over the random seeds of one batch and statistically aggregate the results
 		results_one_config_table = []
 		for config in config_batch:
-			print "\n\n\n\n\n"
-			print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>"
-			print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>"
-			print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>"
-			print "CONFIG: {}".format(config)
+			print("\n\n\n\n\n")
+			print("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>")
+			print("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>")
+			print("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>")
+			print("CONFIG: {}".format(config))
 			legend, row = run_oneconfig_iris(config[0], config[1], config[2], config[3])
 			assert len(legend) == len(row)
 			results_table.append(row)
 			row_f = [float(x) for x in row]
-			for i in xrange(6, 16):
+			for i in range(6, 16):
 				row_f[i] /= float(row_f[2])
 			results_one_config_table.append(row_f)
 		means = np.mean(results_one_config_table, axis=0)
 		stddevs = np.std(results_one_config_table, axis=0)
 		means_one_config = []
 		conf_int_95s_one_config = []
-		for row in xrange(len(means)):
+		for row in range(len(means)):
 			mean = means[row]
 			stddev = stddevs[row]
 			stderr = stddev / math.sqrt(len(config_batch))
@@ -1599,17 +1599,17 @@ def run_iris():
 		conf_int_95s_table.append([str(x) for x in conf_int_95s_one_config])
 
 	# See run_att_faces() for an explanation and description of the final output
-	print "################################################################################"
-	print "FINAL RESULTS"
-	print '~'.join(legend)
+	print("################################################################################")
+	print("FINAL RESULTS")
+	print('~'.join(legend))
 	for row in results_table:
-		print '~'.join(row)
+		print('~'.join(row))
 
-	print
-	print '~'.join(legend)
+	print()
+	print('~'.join(legend))
 
-	for i in xrange(0, len(means_table)):
-		print '~'.join(means_table[i]) + '~' + '~'.join(conf_int_95s_table[i])
+	for i in range(0, len(means_table)):
+		print('~'.join(means_table[i]) + '~' + '~'.join(conf_int_95s_table[i]))
 
 	# print "################################################################################"
 	# print "FINAL RESULTS"
@@ -1626,7 +1626,7 @@ def run_oneconfig_mushroom(max_aif, train_set_proportion, randomize_train_set, r
 	"""
 	network = cm1k.CM1KEmulator(network_size=0)
 	network.write_maxif(max_aif)  # Override the default max AIF
-	print "Max AIF: {}".format(network.read_maxif())
+	print("Max AIF: {}".format(network.read_maxif()))
 
 	# Read the entire dataset
 	data = mushroom.read_mushroom(mushroom_data_dir)
@@ -1634,17 +1634,17 @@ def run_oneconfig_mushroom(max_aif, train_set_proportion, randomize_train_set, r
 
 	# Split into train and test subsets
 	train_set_cutoff = int(round(8124 * train_set_proportion))
-	print "train_set_cutoff : {}".format(train_set_cutoff)
+	print("train_set_cutoff : {}".format(train_set_cutoff))
 	train_set = []
 	test_set = []
-	for i in xrange(0, train_set_cutoff):
+	for i in range(0, train_set_cutoff):
 		train_set.append(data[i])
-	for i in xrange(train_set_cutoff, 8124):
+	for i in range(train_set_cutoff, 8124):
 		test_set.append(data[i])
 
 	assert(len(train_set) == train_set_cutoff)
 	assert(len(test_set) == 8124 - train_set_cutoff)
-	print "Size train and set sets: {}, {}".format(len(train_set), len(test_set))
+	print("Size train and set sets: {}, {}".format(len(train_set), len(test_set)))
 
 	train_set_to_use = train_set
 
@@ -1654,7 +1654,7 @@ def run_oneconfig_mushroom(max_aif, train_set_proportion, randomize_train_set, r
 		rd.seed(rseed)
 
 		train_set_randomized = []
-		indices = range(0, len(train_set))
+		indices = list(range(0, len(train_set)))
 		rd.shuffle(indices)
 		# print "Randomized train set indices: {}".format(indices)
 
@@ -1688,7 +1688,7 @@ def run_mushroom():
 	for max_aif in max_aif_range:
 		for train_proportion in [.1, .2, .3, .4, .5, .6, .7, .8, .9]:
 			config_batch = []
-			for rseed in xrange(0, 10):
+			for rseed in range(0, 10):
 				config_batch.append([max_aif, train_proportion, True, rseed])
 			config_batches.append(config_batch)
 
@@ -1701,23 +1701,23 @@ def run_mushroom():
 		# Iterate over the random seeds of one batch and statistically aggregate the results
 		results_one_config_table = []
 		for config in config_batch:
-			print "\n\n\n\n\n"
-			print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>"
-			print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>"
-			print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>"
-			print "CONFIG: {}".format(config)
+			print("\n\n\n\n\n")
+			print("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>")
+			print("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>")
+			print("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>")
+			print("CONFIG: {}".format(config))
 			legend, row = run_oneconfig_mushroom(config[0], config[1], config[2], config[3])
 			assert len(legend) == len(row)
 			results_table.append(row)
 			row_f = [float(x) for x in row]
-			for i in xrange(6, 16):
+			for i in range(6, 16):
 				row_f[i] /= float(row_f[2])
 			results_one_config_table.append(row_f)
 		means = np.mean(results_one_config_table, axis=0)
 		stddevs = np.std(results_one_config_table, axis=0)
 		means_one_config = []
 		conf_int_95s_one_config = []
-		for row in xrange(len(means)):
+		for row in range(len(means)):
 			mean = means[row]
 			stddev = stddevs[row]
 			stderr = stddev / math.sqrt(len(config_batch))
@@ -1728,17 +1728,17 @@ def run_mushroom():
 		conf_int_95s_table.append([str(x) for x in conf_int_95s_one_config])
 
 	# See run_att_faces() for an explanation and description of the final output
-	print "################################################################################"
-	print "FINAL RESULTS"
-	print '~'.join(legend)
+	print("################################################################################")
+	print("FINAL RESULTS")
+	print('~'.join(legend))
 	for row in results_table:
-		print '~'.join(row)
+		print('~'.join(row))
 
-	print
-	print '~'.join(legend)
+	print()
+	print('~'.join(legend))
 
-	for i in xrange(0, len(means_table)):
-		print '~'.join(means_table[i]) + '~' + '~'.join(conf_int_95s_table[i])
+	for i in range(0, len(means_table)):
+		print('~'.join(means_table[i]) + '~' + '~'.join(conf_int_95s_table[i]))
 
 	# print "################################################################################"
 	# print "FINAL RESULTS"

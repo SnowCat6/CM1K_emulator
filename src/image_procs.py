@@ -64,7 +64,7 @@ def read_pgm_file(path, invert_image=False):
 		if invert_image:
 			# Invert the pixels so they are drawn black foreground against white background
 			pixels_arr_int_inv = []
-			for i in xrange(0, num_pixels):
+			for i in range(0, num_pixels):
 				px = pixels_arr_int[i]
 				pixels_arr_int_inv.append(255 - px)
 		else:
@@ -79,7 +79,7 @@ def convert_image_from_num_to_chr(img_num, num_pixels):
 	:return converted image
 	"""
 	img_chr = ""
-	for i in xrange(0, num_pixels):
+	for i in range(0, num_pixels):
 		px = img_num[i]
 		img_chr += chr(px)
 	return img_chr
@@ -90,7 +90,7 @@ def print_ascii_image(img_in, width_in):
 	Draw an ASCII image.  Obviously, this requires a monospace font.
 	For most fonts and line-heights, printing two characters per pixel produces a more square result.
 	"""
-	print "+" + ''.join(['--'] * width_in) + "+"
+	print("+" + ''.join(['--'] * width_in) + "+")
 	row = ""
 	for i, px in enumerate(img_in):
 		ch = '  '
@@ -113,9 +113,9 @@ def print_ascii_image(img_in, width_in):
 
 		row += ch
 		if i % width_in == width_in - 1:
-			print '|' + row + '|'
+			print('|' + row + '|')
 			row = ""
-	print "+" + ''.join(['--'] * width_in) + "+"
+	print("+" + ''.join(['--'] * width_in) + "+")
 
 
 def resample_image(img_in, width_in, height_in, width_out, interpolation_method="bilinear"):
@@ -134,15 +134,15 @@ def resample_image(img_in, width_in, height_in, width_out, interpolation_method=
 	# print "Image dimensions resampled: {} R x {} C".format(height_out, width_out)
 
 	if interpolation_method == "nearest_neighbor":
-		for ro in xrange(0, height_out):
-			for co in xrange(0, width_out):
+		for ro in range(0, height_out):
+			for co in range(0, width_out):
 				ri = int(round(float(ro) * scale_inv))
 				ci = int(round(float(co) * scale_inv))
 				px_nn = img_in[ri * width_in + ci]
 				img_out.append(px_nn)
 	elif interpolation_method == "bilinear":
-		for ro in xrange(0, height_out):
-			for co in xrange(0, width_out):
+		for ro in range(0, height_out):
+			for co in range(0, width_out):
 				ri_flt = float(ro) * scale_inv
 				ri_flr = int(math.floor(ri_flt))
 				ri_cln = int(math.ceil(ri_flt))
@@ -202,8 +202,8 @@ def shift_image(img_in, width_in, height_in, hor_shift, ver_shift, bg_color):
 		rstep = -1
 
 	img_out = [bg_color] * (width_in * height_in)
-	for row in xrange(row_start, row_end, rstep):
-		for col in xrange(col_start, col_end, cstep):
+	for row in range(row_start, row_end, rstep):
+		for col in range(col_start, col_end, cstep):
 			img_out[row * width_in + col] = img_in[(row - ver_shift) * width_in + (col - hor_shift)]
 	return img_out
 
@@ -225,8 +225,8 @@ def find_bounding_box(img, width, height, threshold):
 	top = height - 1
 	right = 0
 	bottom = 0
-	for row in xrange(0, height):
-		for col in xrange(0, width):
+	for row in range(0, height):
+		for col in range(0, width):
 			px = img[row * width + col]
 			if (threshold > 0 and px < threshold) or (threshold <= 0 and px > -threshold):
 				if row < top:
@@ -303,9 +303,9 @@ def crop_img_to_square_via_grow(img_in, width_in, height_in, threshold):
 			new_height = bottom - top + 1
 
 	img_out = [255 if threshold > 0 else 0] * (cropped_dim * cropped_dim)
-	for row in xrange(max(top, 0), top + cropped_dim):
+	for row in range(max(top, 0), top + cropped_dim):
 		if 0 <= row < height_in:
-			for col in xrange(max(left, 0), left + cropped_dim):
+			for col in range(max(left, 0), left + cropped_dim):
 				if 0 <= col < width_in:
 					img_out[(row - top) * cropped_dim + (col - left)] = img_in[row * width_in + col]
 	return img_out, cropped_dim
@@ -349,9 +349,9 @@ def crop_img_to_square_via_shrink(img_in, width_in, height_in, threshold):
 			new_height = bottom - top + 1
 
 	img_out = [255 if threshold > 0 else 0] * (cropped_dim * cropped_dim)
-	for row in xrange(top, top + cropped_dim):
+	for row in range(top, top + cropped_dim):
 		if row < height_in:
-			for col in xrange(left, left + cropped_dim):
+			for col in range(left, left + cropped_dim):
 				if col < width_in:
 					img_out[(row - top) * cropped_dim + (col - left)] = img_in[row * width_in + col]
 	return img_out, cropped_dim

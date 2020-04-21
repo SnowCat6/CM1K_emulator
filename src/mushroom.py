@@ -10,7 +10,7 @@ https://archive.ics.uci.edu/ml/datasets/Mushroom
 def read_mushroom(data_dir):
 	data = []
 
-	print "Reading MUSHROOM dataset:"
+	print("Reading MUSHROOM dataset:")
 	with open(data_dir + "agaricus-lepiota.data.txt") as f:
 		for line in f.readlines():
 			parts = line.strip().split(',')

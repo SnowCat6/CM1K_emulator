@@ -12,7 +12,7 @@ from collections import defaultdict
 def read_iris(data_dir):
 	data_grouped_by_cat = defaultdict(list)
 
-	print "Reading IRIS dataset:"
+	print("Reading IRIS dataset:")
 	with open(data_dir + "iris.data.txt") as f:
 		for line in f.readlines():
 			parts = line.strip().split(',')

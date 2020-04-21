@@ -72,7 +72,7 @@ class CM1KEmulator:
 		else:  # elif network_size > 0:
 			num_neurons = network_size
 		self.neurons = []
-		for i in xrange(0, num_neurons):
+		for i in range(0, num_neurons):
 			self.neurons.append(nrn.Neuron(i, self))
 
 		# Put the first neuron in ready-to-learn state
@@ -119,7 +119,7 @@ class CM1KEmulator:
 
 		# Initialize the registers with the hardware defaults
 		self.registers = OrderedDict()
-		for key, val in self.register_legend.iteritems():
+		for key, val in self.register_legend.items():
 			if val[0] not in self.registers:  # There are a few repeats, so just skip them
 				self.registers[val[0]] = val[1]
 
@@ -140,7 +140,7 @@ class CM1KEmulator:
 		"""
 		Log the register values
 		"""
-		for key, val in self.register_legend.iteritems():
+		for key, val in self.register_legend.items():
 			log.log("{:12} {:>2}: {:>10} {:>10}".format(
 				key, val[0], self.registers[val[0]], "0x{:X}".format(self.registers[val[0]])))
 

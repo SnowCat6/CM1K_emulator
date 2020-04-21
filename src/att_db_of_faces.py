@@ -51,10 +51,10 @@ def read_att_db_of_faces(data_dir, invert_images=False, print_images=False):
 				pixels_arr_int_inv_crp_chr = img_p.convert_image_from_num_to_chr(pixels_arr_int_inv_crp, width_crp * width_crp)
 
 			if print_images:
-				print "{}{}".format(subdir, filename)
+				print("{}{}".format(subdir, filename))
 				img, h = img_p.resample_image(pixels_arr_int_inv_crp, width_crp, width_crp, 16 if crop_via_shrink else 19)
 				img_p.print_ascii_image(img, 16 if crop_via_shrink else 19)
-				print
+				print()
 
 			labeled_images[label].append(pixels_arr_int_inv_crp_chr)
 
